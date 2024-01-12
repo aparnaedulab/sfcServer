@@ -1,0 +1,4924 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "ngx-admin Backend Bundle API",
+    "description": "ngx-admin Backend Bundle API",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "ADMIN",
+      "description": "authentication"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization",
+      "description": "Bearer <my own JWT token>"
+    }
+  },
+  "security": [
+    {
+      "Bearer": []
+    }
+  ],
+  "paths": {
+    "/auth/login":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Login",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "tiffany@edulab.in"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/deleteDocument":{
+      "delete": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "id",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "userId",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "app_id",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/getApplicationDetails":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "id",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/getApplicationDetailsByUser":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "page",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "id",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "name",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "email",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "service",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "orderId",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "tracker",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "status",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/getApplicationDetailsByUser_wes":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "page",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "id",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "name",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "email",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "service",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "tracker",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "status",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/admin/adminDashboard/getAppTransStatus":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "user_id",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/getAdminInstructionalDetails":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "userId",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/getAdminDetails":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/getParticularInstructionalDetails":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "id",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/viewFileStatus":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "userId",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "appId",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/collegeWiseApplicationCount":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "page",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "service",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/printDocuments":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "source_from",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "app_id",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "user_id",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/collegeManagement/getCollegeData":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/getCousreData":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/sendEmailToCollege":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "collegeId",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "user_id",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/collegeManagement/updateCollegeStatus":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "status",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "college_id",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "college_name",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/collegeManagement/removeCollege":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "college_id",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/generatepdfform":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "app_id",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "userId",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "type",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "source_from",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/mergeDocuments":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "app_id",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "userId",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "type",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "source_from",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/deliveryTypeModeWiseAppCount":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/getStudentDetails":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "page",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "studentName",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "email",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/getapplication":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "id",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/getFileDetails":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "app_id",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "user_id",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/application/getPaymentdeatils":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "value",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/getAll_Paydetails":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "page",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "id",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": " name",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "email",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "order_id",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "bank_ref_no",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/downloadExcel_date":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "startDate",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "endDate",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/getallpedingpayment":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "page",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "date",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "email",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "value",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/getStudentApplicationDetails":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "userId",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "services",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/downloadExcel":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "tracker",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "status",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "tab",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "startDate",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "endDate",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "service",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/downloadExcel_wes":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "tracker",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "status",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "tab",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "startDate",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "endDate",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "service",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/downloadFileExcel":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "date",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/downloadFiles":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "documentFile",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/getFileData":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "page",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "date",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/collegeManagement/addOrUpdateCourseData":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "data",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/getPaymentDetails":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "tab_type",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/regeneratePdf":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "appl_id",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "user_id",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "reg_reason",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "source_from",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/getCollegeWiseApplicationsCount":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "page",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/pieCharts":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/role_management/getSubAdminData":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "userId",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/transcript_lock":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "userId",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "app_id",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/appWiseDocssuper":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "userId",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "category",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/role_management/getRolesData":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "userId",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/role_management/main":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "name",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "email",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/role_management/getSuperMenuRole":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "userID",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/superactivitytracker":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "page",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "date",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "data",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "email",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "service",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/checksignedpdf":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "id",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "userId",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "source_from",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/downloadDocuments":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "documentFile",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/getOutwardData":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "user_id",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "app_id",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "source",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/getCourses":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/getColleges":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/getParticularInstitutionDetails":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "id",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/download":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "source_from",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "startDate",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "endDate",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/getusermarklist":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "type",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "app_id",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "user_id",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/getApplicationDetailsByUser_WesRangeWise":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "page",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "id",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "name",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "email",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "service",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "tracker",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "status",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "startDate",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "endDate",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/updateAttestedFor":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "userid",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "app_id",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "source",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "value",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/resetDoc":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "user_id",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/courseDetails":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "course",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "pattern",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/students":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "page",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "name",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "email",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/student_feeback":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/superview":{
+      "get": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "category",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": ""
+              }
+            },
+            {
+              "in": "query",
+              "name": "userId",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": ""
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/admin/adminDashboard/lockUnlockEdu":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Lock Unlock",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type":"object",
+                "properties":{
+                    "app_id":{
+                        "type":"integer",
+                        "example":""
+                    },
+                  "lock":{
+                    "type":"string",
+                    "example":""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/admin/saveNotes":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Save Notes",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type":"object",
+                "properties":{
+                    "id":{
+                        "type":"integer",
+                        "example":""
+                    },
+                  "notes":{
+                    "type":"string",
+                    "example":""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/deleteDocument_Admin":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Delete Document",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "source": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "filename": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "app_id": {
+                    "type": "integer",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/saveOutwardMultiple":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Save Outward Mulitple",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "app_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "syoutward": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "marksheetoutward": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "transcriptoutward": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "degreeoutward": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "thesisoutward": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "bachinstructionaloutward": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "mastinstructionaloutward": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "phdinstructionaloutward": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "source": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "user_id": {
+                    "type": "integer",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/feedBack":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Feedback",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "satisfy": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "recommend": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "staff": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "experience": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "exp_prob": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "suggestion": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "user_id": {
+                    "type": "integer",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/admin/adminDashboard/verification":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Verification",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "app_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "user_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "checked": {
+                    "type": "string",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/setTrackerStatus":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Set Tracker Status",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "source_from": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "outward": {
+                    "type": "integer",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/setApplictaionFormDate":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Set Application Form Date",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "event": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "user_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "app_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "value": {
+                    "type": "string",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/verifyparticularDocuments":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Verify Particular Documents",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "app_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "user_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "checked": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "source": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "doc_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "outward": {
+                    "type": "integer",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdminsetDocumentAs":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Set Document As",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "doc_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "checked": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "setas": {
+                    "type": "string",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/saveOutward":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Save Outward",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "app_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "outward": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "source": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "user_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "letterFormat": {
+                    "type": "string",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/sendEmail":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Send Email",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "source_from": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/printSuperAdmin":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Print Super Admin",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "app_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "source_from": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "dataValues": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "user_id": {
+                    "type": "integer",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/role_management/setUpdateRole":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Set Update Role",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "roles": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "superroles": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "source_array": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "activity": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "user_id": {
+                    "type": "integer",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/role_management/changeSubAdminStatus":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Change Sub-Admin Status",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "type": "integer",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/role_management/addUpdatesubAdmin":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Add Updates Sub-Admin",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "subAdminData": {
+                    "type": "string",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/convocationDecision":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Convocation Decision",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "app_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "user_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "event": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/updateErrataTranscript":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Update Errata Transcript",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "errataTranscript": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "errataMarksheet": {
+                    "type": "string",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/printAddress":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Print Address",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "appl_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "user_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "section": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "source_from": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "addressid": {
+                    "type": "integer",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/transcriptRequiredMail":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Transcript Required Mail",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "app_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "user_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "event": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/marksheetsRequired":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Marksheets Required",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "app_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "user_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "event": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/trans_sendmessage":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Trans Send Message",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "msg_from_admin_data": {
+                    "type": "string",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/setApplicationErrata":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Set Application Errata",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "event": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "user_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "app_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "source": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "errataType": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "whicherrata": {
+                    "type": "string",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/setErrata":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Set Errata",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "app_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "notes": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "docid": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/updateNoteAndApplication":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Update Note and Application",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "app_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "user_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "event": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "note": {
+                    "type": "string",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/admin/adminDashboard/trans_sendmessage":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Trans Send Message",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "msg_from_admin_data": {
+                    "type": "string",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/rejectApplication":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Reject Application",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "source_from": {
+                    "type": "string",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/removeFromReject":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Remove From Reject",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "source_from": {
+                    "type": "string",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/outward":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Outward",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "app_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "source": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "outward": {
+                    "type": "integer",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/setResolve":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Set Resolve",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "value": {
+                    "type": "string",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/updateStudentDetails":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Update Student Details",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "personalDetails": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "userId": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "id": {
+                    "type": "integer",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/pickupdate":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Pickup Date",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "app_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "user_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "date": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "source_from": {
+                    "type": "string",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/pickupmail":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Pickup Mail",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "app_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "user_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "date": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "source_from": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "time": {
+                    "type": "integer",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/sentoEdulab":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Sent To Edulab",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "app_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "source_from": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/setVerifyforPrint":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Sent To Edulab",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "event": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "app_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "userId": {
+                    "type": "integer",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/saveInstructional":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Save Instructional",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "value": {
+                    "type": "string",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/colornagnge":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Colornagnge",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "app_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "source": {
+                    "type": "string",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/collegeManagement/addcourse":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Add Course",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "course_name": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "degree_type": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "duration": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "addEdit": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "faculty": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "college_short_form": {
+                    "type": "string",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/collegeManagement/addOrUpdateCollegeData":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Add Or Update College Data",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "required": "true",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "example": ""
+                      },
+                      "name": {
+                        "type": "string",
+                        "example": ""
+                      },
+                      "contactPerson": {
+                        "type": "string",
+                        "example": ""
+                      },
+                      "contactNo": {
+                        "type": "integer",
+                        "example": ""
+                      },
+                      "emailId": {
+                        "type": "string",
+                        "example": ""
+                      },
+                      "alternateContactPerson": {
+                        "type": "string",
+                        "example": ""
+                      },
+                      "alternateContactNo": {
+                        "type": "integer",
+                        "example": ""
+                      },
+                      "alternateEmailId": {
+                        "type": "string",
+                        "example": ""
+                      },
+                      "college_Address": {
+                        "type": "string",
+                        "example": ""
+                      },
+                      "addEdit": {
+                        "type": "string",
+                        "example": ""
+                      },
+                      "category": {
+                        "type": "string",
+                        "example": ""
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/adminResetPassword":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Admin Reset Password",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "user_mail": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "userId": {
+                    "type": "integer",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/saveapplication":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Save Application",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userid": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "app_id": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "source": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "value": {
+                    "type": "string",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/saveEduDetails":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Save Edu Details",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "source": {
+                    "type": "string",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/saveInsDetails":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Save Edu Details",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "source": {
+                    "type": "string",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/saveAddDetails":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Save Add Details",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "documentDetailsData": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "source": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "user_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "app_id": {
+                    "type": "integer",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/saveinstitutiondetails":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Save Institutional Details",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "value": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "informadmin": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "app_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "Adminemail": {
+                    "type": "string",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/RemoveCurrentYear":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Remove Current Year",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "id": {
+                    "type": "integer",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/changeDeliveryMode":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Change Delivery Mode",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userid": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "app_id": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "value": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "noofcopies": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "address": {
+                    "type": "string",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    },
+    "/superAdmin/sendmailtostudent":{
+      "post": {
+          "tags": [
+            "ADMIN"
+          ],
+          "security":[
+              {
+                  "Bearer":[]
+              }
+          ],
+          "parameters": [
+            {
+              "name": "Send Email To Student",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userid": {
+                    "type": "integer",
+                    "example": ""
+                  },
+                  "email": {
+                    "type": "integer",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          ],
+          "responses":{
+              "200":{
+                  "description":"OK"
+              },
+              "400":{
+                "description":"Error!"
+            }
+          }
+      }
+    }
+  }
+}
