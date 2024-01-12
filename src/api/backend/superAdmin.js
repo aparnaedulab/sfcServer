@@ -501,14 +501,11 @@ router.get('/getApplicationDetailsByUser',getUserRole,  function (req, res) {
 
    models.Application.getApplicationByUser_count(filters,tracker,status,null,null,req.superRoles,req.superuniversity,req.attest,req.verify,emailId).then(data1 => {
         countObjects.totalLength = data1[0].cnt;
-        console.log('data1[0].cnt' , data1[0].cnt)
         models.Application.getApplicationByUser(filters,tracker,status,limit,offset,req.superRoles,req.superuniversity,req.attest,req.verify,emailId).then(async data => {
-            console.log('datadatadatadatadatadatadatadata' , data)
-            countObjects.filteredLength = data.length;
-
+        countObjects.filteredLength = data.length;
 
             require('async').eachSeries(data, function(student, callback){
-                console.log('studentstudent' , student.university)
+               
                 students.push({
                     user_id : student.user_id,
                     name :student.name,
@@ -7454,8 +7451,10 @@ router.get('/getOutwardData',getUserRole,async (req,res)=>{
 router.post('/saveOutwardMultiple', async (req, res) => {
     console.log("Dddddddddd",req.body);
     var app_id = req.body.app_id
-    var source = req.body.source
+    var source = req.body.serviceValue
     var user_id = req.body.user_id
+    var university = req.body.university
+    var serviceValue = req.body.serviceValue
     var syoutward = req.body.syoutward
     var marksheetoutward = req.body.marksheetoutward
     var transcriptoutward = req.body.transcriptoutward
@@ -7468,191 +7467,29 @@ router.post('/saveOutwardMultiple', async (req, res) => {
     const clientIP = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
     var getOutwardAll,updateoutward,setverified,deleteInstructional;
 
-    if(source == 'guverification'){
-        if(marksheetoutward != ''){
-            getOutwardAll = await functions.getOutward_verification(app_id, 'marksheet');
-            if(getOutwardAll){
-                updateoutward = await functions.updateverifyoutward(app_id, user_id, marksheetoutward, 'marksheet');
-            }else{
-                updateoutward = await functions.saveOutwardNumber(app_id,user_id,marksheetoutward,'marksheet',source,'',null,'',req.user.email,clientIP)
-            }
-            setverified  = await functions.updateVerify(app_id,user_id,'marksheet',source);
-        }
-        if(transcriptoutward != ''){
-            getOutwardAll = await functions.getOutward_verification(app_id, 'transcript');
-            if(getOutwardAll){
-                updateoutward = await functions.updateverifyoutward(app_id, user_id, transcriptoutward, 'transcript');
-            }else{
-                updateoutward = await functions.saveOutwardNumber(app_id,user_id,transcriptoutward,'transcript',source,'',null,'',req.user.email,clientIP)
-            }
-            setverified  = await functions.updateVerify(app_id,user_id,'transcript',source);
-        }
-        if(degreeoutward != ''){
-            getOutwardAll = await functions.getOutward_verification(app_id, 'degree');
-            if(getOutwardAll){
-                updateoutward = await functions.updateverifyoutward(app_id, user_id, degreeoutward, 'degree');
-            }else{
-                updateoutward = await functions.saveOutwardNumber(app_id,user_id,degreeoutward,'degree',source,'',null,'',req.user.email,clientIP)
-            }
-            setverified  = await functions.updateVerify(app_id,user_id,'degree',source);
-        }
-
-        await request.post(VERIFY_BASE_URL+'/application/setVerified',{json:{"clientIP":clientIP,"app_id":app_id,"userId":user_id,"value":'pending',"email_admin":req.user.email,"outward":''}},
-        async function(error, response, VERIFY){
-            if(error){
-            }else{
-                if(VERIFY.status == 200){
-                    var desc = "App Id  " + app_id + " processed from pending to verified " + " by "+  req.user.email;
-                    var activity = "Application Process";
-                    await functions.activitylog(req,user_id, activity, desc, app_id, 'guAdmin');
-                        res.json({
-                            status : 200,
-                            message : 'Outward Number Updated'
-                        })
-                }else{
-                    res.json({
-                        status : 400,
-                        message : VERIFY.message
-                    })
-                }
-            }
-        })
+    if(university == 'mumbai'){
+        
+        updateoutward = await functions.saveOutwardNumber(app_id,user_id,value_mast,'instructional', source ,degree_mast,'','',req.user.email,clientIP);
+        // var updateTracker = await functions.updateTracker(app_id);
+        // if(updateTracker){
+        //     console.log("Ddddd",updateTracker);
+        //     var desc = "App Id  " + app_id + " processed from pending to verified " + " by "+  req.user.email;
+        //     var activity = "Application Process";
+        //     await functions.activitylog(req,user_id, activity, desc, app_id, 'guAdmin');
+        //         res.json({
+        //             status : 200,
+        //             message : 'Application Procssed'
+        //         })
+        // }else{
+        //     res.json({
+        //         status : 400,
+        //         message : VERIFY.message
+        //     })
+        // }
 
     }
-    else if(source == 'gusyverification'){
-        if(syoutward != ''){
-            getOutwardAll = await functions.getsyOutwardNumber(app_id,user_id);
-            if(getOutwardAll){
-                updateoutward = await functions.updatesyoutward(app_id, user_id, syoutward);
-            }else{
-                updateoutward = await functions.saveOutwardNumber(app_id,user_id,syoutward,'',source,'',null,'',req.user.email,clientIP)
-            }
-            setverified  = await functions.updateVerify(app_id,user_id,'',source);
-        }
 
-        await request.post(SY_VERIFY_BASE_URL+'/application/setVerified',{json:{"clientIP":clientIP,"app_id":app_id,"userId":user_id,"value":'pending',"email_admin":req.user.email,"outward":''}},
-        async function(error, response, VERIFY){
-            if(error){
-            }else{
-                if(VERIFY.status == 200){
-                    var desc = "App Id  " + app_id + " processed from pending to verified " + " by "+  req.user.email;
-                    var activity = "Application Process";
-                    await functions.activitylog(req,user_id, activity, desc, app_id, 'guAdmin');
-                        res.json({
-                            status : 200,
-                            message : 'Outward Number Updated'
-                        })
-                }else{
-                    res.json({
-                        status : 400,
-                        message : VERIFY.message
-                    })
-                }
-            }
-        })
-    }
-    else if(source == 'guattestation'){
-        if(marksheetoutward != ''){
-            getOutwardAll = await functions.getAllOutward(app_id,'marksheets');   
-            updateoutward = await functions.saveOutwardNumber(app_id,user_id,marksheetoutward,'marksheets',source,'','',getOutwardAll.length,req.user.email,clientIP);
-            setverified = await functions.updateVerify(app_id, user_id, 'marksheets', source);
-        }
-        if(transcriptoutward != ''){
-            getOutwardAll = await functions.getAllOutward(app_id,'transcript');  
-            updateoutward = await functions.saveOutwardNumber(app_id,user_id,transcriptoutward,'transcript',source,'','',getOutwardAll.length,req.user.email,clientIP);
-            setverified = await functions.updateVerify(app_id, user_id, 'transcript', source);
-        }
-        if(degreeoutward != ''){
-            getOutwardAll = await functions.getAllOutward(app_id,'degree');   
-            updateoutward = await functions.saveOutwardNumber(app_id,user_id,degreeoutward,'degree',source,'','',getOutwardAll.length,req.user.email,clientIP);
-            setverified = await functions.updateVerify(app_id, user_id, 'degree', source);
-        }
-        if(thesisoutward != ''){
-            getOutwardAll = await functions.getAllOutward(app_id,'thesis');   
-            updateoutward = await functions.saveOutwardNumber(app_id,user_id,thesisoutward,'thesis',source,'','',getOutwardAll.length,req.user.email,clientIP);
-            setverified = await functions.updateVerify(app_id, user_id, 'thesis', source);
-        }
-
-        await request.post(ATTESTATION_BASE_URL+'/admin/adminDashboard/pending/verifiedBy',{json:{"clientIP":clientIP,"id":app_id,"email_admin":req.user.email,"outward":''}},
-        async function(error, response, VERIFY){
-            if(error){
-            }else{
-                if(VERIFY.status == 200){
-                    var desc = "App Id  " + app_id + " processed from pending to verified " + " by "+  req.user.email;
-                    var activity = "Application Process";
-                    await functions.activitylog(req,user_id, activity, desc, app_id, 'guAdmin');
-                        res.json({
-                            status : 200,
-                            message : 'Outward Number Updated'
-                        })
-                }else{ 
-                    res.json({
-                        status : 400,
-                        message:VERIFY.message
-                    })
-                }
-            }
-        })
-
-    }
-    else if(source == 'gumoi'){
-        var degree;
-        var value;
-        if(bachinstructionaloutward != '' && mastinstructionaloutward == ''){
-            getOutwardAll = await functions.getAllOutward_instructional(app_id,'instructional','Bachelors');
-            degree = 'Bachelors';
-            value  = bachinstructionaloutward
-            if(getOutwardAll.length  > 0){
-                deleteInstructional = await functions.destroyoutward_instructional(app_id,'instructional',degree);
-            }
-        }else if(mastinstructionaloutward != '' && bachinstructionaloutward == '' ){
-            getOutwardAll = await functions.getAllOutward_instructional(app_id,'instructional','Masters');
-            degree = 'Masters';
-            value  = mastinstructionaloutward;
-            if(getOutwardAll.length  > 0){
-                deleteInstructional = await functions.destroyoutward_instructional(app_id,'instructional',degree);
-            }
-        }else{
-            getOutwardAll_Masters = await functions.getAllOutward_instructional(app_id,'instructional','Masters');
-            getOutwardAll_Bachelors = await functions.getAllOutward_instructional(app_id,'instructional','Bachelors');
-            if(getOutwardAll_Bachelors.length  > 0){
-                deleteInstructional = await functions.destroyoutward_instructional(app_id,'instructional','Bachelors');
-            }
-              if(getOutwardAll_Masters.length  > 0){
-                deleteInstructional = await functions.destroyoutward_instructional(app_id,'instructional','Masters');
-            }
-          var  degree_mast = 'Masters';
-          var  value_mast  = mastinstructionaloutward;
-          var degree_bach = 'Bachelors';
-          var  value_bach  = bachinstructionaloutward;
-            updateoutward = await functions.saveOutwardNumber(app_id,user_id,value_mast,'instructional',source,degree_mast,'','',req.user.email,clientIP);
-            updateoutward = await functions.saveOutwardNumber(app_id,user_id,value_bach,'instructional',source,degree_bach,'','',req.user.email,clientIP);
-        }
-        updateoutward = await functions.saveOutwardNumber(app_id,user_id,value,'instructional',source,degree,'','',req.user.email,clientIP);
-        setverified  = await functions.updateVerify(app_id,user_id,'instructional',source);
-
-        await request.post(MOI_BASE_URL+'/admin/adminDashboard/pending/verifiedBy',{json:{"clientIP":clientIP,"id":app_id,"email_admin":req.user.email,"outward":'',"clientIP":clientIP}},
-        async function(error, response, VERIFY){
-            if(error){
-            }else{
-                if(VERIFY.status == 200){
-                    var desc = "App Id  " + app_id + " processed from pending to verified " + " by "+  req.user.email;
-                    var activity = "Application Process";
-                    await functions.activitylog(req,user_id, activity, desc, app_id, 'guAdmin');
-                        res.json({
-                            status : 200,
-                            message : 'Outward Number Updated'
-                        })
-                }else{
-                    res.json({
-                        status : 400,
-                        message:VERIFY.message
-                    })
-                }
-            }
-        })
-    }
-    else if(service.includes('pdc') || service.includes('guconvocation') || service.includes('gumigration') || service.includes('guinternship') ){
+    if(university == 'sou'){
         updateoutward = await functions.saveOutwardNumber(app_id,user_id,value_mast,'instructional',source,degree_mast,'','',req.user.email,clientIP);
         var updateTracker = await functions.updateTracker(app_id);
         if(updateTracker){
@@ -7671,7 +7508,233 @@ router.post('/saveOutwardMultiple', async (req, res) => {
             })
         }
     }
+
+    if(university == 'gu'){
+        if(source == 'guverification'){
+            if(marksheetoutward != ''){
+                getOutwardAll = await functions.getOutward_verification(app_id, 'marksheet');
+                if(getOutwardAll){
+                    updateoutward = await functions.updateverifyoutward(app_id, user_id, marksheetoutward, 'marksheet');
+                }else{
+                    updateoutward = await functions.saveOutwardNumber(app_id,user_id,marksheetoutward,'marksheet',source,'',null,'',req.user.email,clientIP)
+                }
+                setverified  = await functions.updateVerify(app_id,user_id,'marksheet',source);
+            }
+            if(transcriptoutward != ''){
+                getOutwardAll = await functions.getOutward_verification(app_id, 'transcript');
+                if(getOutwardAll){
+                    updateoutward = await functions.updateverifyoutward(app_id, user_id, transcriptoutward, 'transcript');
+                }else{
+                    updateoutward = await functions.saveOutwardNumber(app_id,user_id,transcriptoutward,'transcript',source,'',null,'',req.user.email,clientIP)
+                }
+                setverified  = await functions.updateVerify(app_id,user_id,'transcript',source);
+            }
+            if(degreeoutward != ''){
+                getOutwardAll = await functions.getOutward_verification(app_id, 'degree');
+                if(getOutwardAll){
+                    updateoutward = await functions.updateverifyoutward(app_id, user_id, degreeoutward, 'degree');
+                }else{
+                    updateoutward = await functions.saveOutwardNumber(app_id,user_id,degreeoutward,'degree',source,'',null,'',req.user.email,clientIP)
+                }
+                setverified  = await functions.updateVerify(app_id,user_id,'degree',source);
+            }
     
+            await request.post(VERIFY_BASE_URL+'/application/setVerified',{json:{"clientIP":clientIP,"app_id":app_id,"userId":user_id,"value":'pending',"email_admin":req.user.email,"outward":''}},
+            async function(error, response, VERIFY){
+                if(error){
+                }else{
+                    if(VERIFY.status == 200){
+                        var desc = "App Id  " + app_id + " processed from pending to verified " + " by "+  req.user.email;
+                        var activity = "Application Process";
+                        await functions.activitylog(req,user_id, activity, desc, app_id, 'guAdmin');
+                            res.json({
+                                status : 200,
+                                message : 'Outward Number Updated'
+                            })
+                    }else{
+                        res.json({
+                            status : 400,
+                            message : VERIFY.message
+                        })
+                    }
+                }
+            })
+    
+        }
+        else if(source == 'gusyverification'){
+            if(syoutward != ''){
+                getOutwardAll = await functions.getsyOutwardNumber(app_id,user_id);
+                if(getOutwardAll){
+                    updateoutward = await functions.updatesyoutward(app_id, user_id, syoutward);
+                }else{
+                    updateoutward = await functions.saveOutwardNumber(app_id,user_id,syoutward,'',source,'',null,'',req.user.email,clientIP)
+                }
+                setverified  = await functions.updateVerify(app_id,user_id,'',source);
+            }
+    
+            await request.post(SY_VERIFY_BASE_URL+'/application/setVerified',{json:{"clientIP":clientIP,"app_id":app_id,"userId":user_id,"value":'pending',"email_admin":req.user.email,"outward":''}},
+            async function(error, response, VERIFY){
+                if(error){
+                }else{
+                    if(VERIFY.status == 200){
+                        var desc = "App Id  " + app_id + " processed from pending to verified " + " by "+  req.user.email;
+                        var activity = "Application Process";
+                        await functions.activitylog(req,user_id, activity, desc, app_id, 'guAdmin');
+                            res.json({
+                                status : 200,
+                                message : 'Outward Number Updated'
+                            })
+                    }else{
+                        res.json({
+                            status : 400,
+                            message : VERIFY.message
+                        })
+                    }
+                }
+            })
+        }
+        else if(source == 'guattestation'){
+            if(marksheetoutward != ''){
+                getOutwardAll = await functions.getAllOutward(app_id,'marksheets');   
+                updateoutward = await functions.saveOutwardNumber(app_id,user_id,marksheetoutward,'marksheets',source,'','',getOutwardAll.length,req.user.email,clientIP);
+                setverified = await functions.updateVerify(app_id, user_id, 'marksheets', source);
+            }
+            if(transcriptoutward != ''){
+                getOutwardAll = await functions.getAllOutward(app_id,'transcript');  
+                updateoutward = await functions.saveOutwardNumber(app_id,user_id,transcriptoutward,'transcript',source,'','',getOutwardAll.length,req.user.email,clientIP);
+                setverified = await functions.updateVerify(app_id, user_id, 'transcript', source);
+            }
+            if(degreeoutward != ''){
+                getOutwardAll = await functions.getAllOutward(app_id,'degree');   
+                updateoutward = await functions.saveOutwardNumber(app_id,user_id,degreeoutward,'degree',source,'','',getOutwardAll.length,req.user.email,clientIP);
+                setverified = await functions.updateVerify(app_id, user_id, 'degree', source);
+            }
+            if(thesisoutward != ''){
+                getOutwardAll = await functions.getAllOutward(app_id,'thesis');   
+                updateoutward = await functions.saveOutwardNumber(app_id,user_id,thesisoutward,'thesis',source,'','',getOutwardAll.length,req.user.email,clientIP);
+                setverified = await functions.updateVerify(app_id, user_id, 'thesis', source);
+            }
+    
+            await request.post(ATTESTATION_BASE_URL+'/admin/adminDashboard/pending/verifiedBy',{json:{"clientIP":clientIP,"id":app_id,"email_admin":req.user.email,"outward":''}},
+            async function(error, response, VERIFY){
+                if(error){
+                }else{
+                    if(VERIFY.status == 200){
+                        var desc = "App Id  " + app_id + " processed from pending to verified " + " by "+  req.user.email;
+                        var activity = "Application Process";
+                        await functions.activitylog(req,user_id, activity, desc, app_id, 'guAdmin');
+                            res.json({
+                                status : 200,
+                                message : 'Outward Number Updated'
+                            })
+                    }else{ 
+                        res.json({
+                            status : 400,
+                            message:VERIFY.message
+                        })
+                    }
+                }
+            })
+    
+        }
+        else if(source == 'gumoi'){
+            var degree;
+            var value;
+            if(bachinstructionaloutward != '' && mastinstructionaloutward == ''){
+                getOutwardAll = await functions.getAllOutward_instructional(app_id,'instructional','Bachelors');
+                degree = 'Bachelors';
+                value  = bachinstructionaloutward
+                if(getOutwardAll.length  > 0){
+                    deleteInstructional = await functions.destroyoutward_instructional(app_id,'instructional',degree);
+                }
+            }else if(mastinstructionaloutward != '' && bachinstructionaloutward == '' ){
+                getOutwardAll = await functions.getAllOutward_instructional(app_id,'instructional','Masters');
+                degree = 'Masters';
+                value  = mastinstructionaloutward;
+                if(getOutwardAll.length  > 0){
+                    deleteInstructional = await functions.destroyoutward_instructional(app_id,'instructional',degree);
+                }
+            }else{
+                getOutwardAll_Masters = await functions.getAllOutward_instructional(app_id,'instructional','Masters');
+                getOutwardAll_Bachelors = await functions.getAllOutward_instructional(app_id,'instructional','Bachelors');
+                if(getOutwardAll_Bachelors.length  > 0){
+                    deleteInstructional = await functions.destroyoutward_instructional(app_id,'instructional','Bachelors');
+                }
+                  if(getOutwardAll_Masters.length  > 0){
+                    deleteInstructional = await functions.destroyoutward_instructional(app_id,'instructional','Masters');
+                }
+              var  degree_mast = 'Masters';
+              var  value_mast  = mastinstructionaloutward;
+              var degree_bach = 'Bachelors';
+              var  value_bach  = bachinstructionaloutward;
+                updateoutward = await functions.saveOutwardNumber(app_id,user_id,value_mast,'instructional',source,degree_mast,'','',req.user.email,clientIP);
+                updateoutward = await functions.saveOutwardNumber(app_id,user_id,value_bach,'instructional',source,degree_bach,'','',req.user.email,clientIP);
+            }
+            updateoutward = await functions.saveOutwardNumber(app_id,user_id,value,'instructional',source,degree,'','',req.user.email,clientIP);
+            setverified  = await functions.updateVerify(app_id,user_id,'instructional',source);
+    
+            await request.post(MOI_BASE_URL+'/admin/adminDashboard/pending/verifiedBy',{json:{"clientIP":clientIP,"id":app_id,"email_admin":req.user.email,"outward":'',"clientIP":clientIP}},
+            async function(error, response, VERIFY){
+                if(error){
+                }else{
+                    if(VERIFY.status == 200){
+                        var desc = "App Id  " + app_id + " processed from pending to verified " + " by "+  req.user.email;
+                        var activity = "Application Process";
+                        await functions.activitylog(req,user_id, activity, desc, app_id, 'guAdmin');
+                            res.json({
+                                status : 200,
+                                message : 'Outward Number Updated'
+                            })
+                    }else{
+                        res.json({
+                            status : 400,
+                            message:VERIFY.message
+                        })
+                    }
+                }
+            })
+        }
+        else if(service.includes('pdc') || service.includes('guconvocation') || service.includes('gumigration') || service.includes('guinternship') ){
+            updateoutward = await functions.saveOutwardNumber(app_id,user_id,value_mast,'instructional',source,degree_mast,'','',req.user.email,clientIP);
+            var updateTracker = await functions.updateTracker(app_id);
+            if(updateTracker){
+                console.log("Ddddd",updateTracker);
+                var desc = "App Id  " + app_id + " processed from pending to verified " + " by "+  req.user.email;
+                var activity = "Application Process";
+                await functions.activitylog(req,user_id, activity, desc, app_id, 'guAdmin');
+                    res.json({
+                        status : 200,
+                        message : 'Application Procssed'
+                    })
+            }else{
+                res.json({
+                    status : 400,
+                    message : VERIFY.message
+                })
+            }
+        }
+    }
+
+    if(university == 'hsnc'){
+        updateoutward = await functions.saveOutwardNumber(app_id,user_id,value_mast,'instructional',source,degree_mast,'','',req.user.email,clientIP);
+        var updateTracker = await functions.updateTracker(app_id);
+        if(updateTracker){
+            console.log("Ddddd",updateTracker);
+            var desc = "App Id  " + app_id + " processed from pending to verified " + " by "+  req.user.email;
+            var activity = "Application Process";
+            await functions.activitylog(req,user_id, activity, desc, app_id, 'guAdmin');
+                res.json({
+                    status : 200,
+                    message : 'Application Procssed'
+                })
+        }else{
+            res.json({
+                status : 400,
+                message : VERIFY.message
+            })
+        }
+    }
+
 })
 
 router.post('/verifyparticularDocuments', async (req, res) => {

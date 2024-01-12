@@ -432,8 +432,9 @@ module.exports = {
 	
 	},
 	
-	saveOutwardNumber: async(app_id,user_id,outward,type,source,degree,letterFormat,count,email,clientIP)=>{
-		if(source == 'guattestation'  ){
+	saveOutwardNumber: async(app_id,user_id,outward,type,source,degree,letterFormat,count,email,clientIP , )=>{
+
+		if(source.includes('guattestation')){
 			if(outward == 'undefined' || outward== undefined){
 				return false;
 			}else{
@@ -466,7 +467,7 @@ module.exports = {
 				}
 			}
 		}
-		if(source == 'gumoi' ){
+		if(source.includes('gumoi')){
 			if(outward == 'undefined' || outward== undefined){
 				return false;
 			}else{
@@ -480,7 +481,7 @@ module.exports = {
 			}
 		}
 		}
-		if (source == 'guverification') {
+		if (source.includes('guverification')) {
 			var updated = false;
 			await models.MDT_User_Enrollment_Detail.findOne({
 				where: {
@@ -557,7 +558,7 @@ module.exports = {
 			return updated;
 
 		}
-		if (source == 'gusyverification') {
+		if (source.includes('gusyverification')) {
 
 			var updated = false;
 			await models.SY_User_Enrollment_Detail.findOne({
@@ -599,6 +600,17 @@ module.exports = {
 				
 			})
 			return updated;
+		}
+		if(source.includes('pdc') || source.includes('guconvocation') || source.includes('gumigration') || source.includes('guinternship')){
+			
+			var data =  await models.User_Course_Enrollment_Detail_Attestation.create({outward: null  ,type : type ,application_id:app_id ,user_id:user_id , source  : source  });
+			console.log('datadata' , data)
+			if(data){
+				var data = "For Application " + app_id + " Create Outward "+"( "+ outward +" ) by " +  email;
+				var activity = "Create Outward Number ";
+				await models.Activitytracker.create({ user_id: user_id,activity: activity ,data: data ,application_id: app_id ,created_at: moment(), source  : source,  ipAddress:clientIP});
+				return data;
+			}
 		}
 
 	},

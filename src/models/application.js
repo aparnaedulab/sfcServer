@@ -196,11 +196,9 @@ module.exports = function (sequelize, DataTypes) {
       where_super_roles = " AND app.source_from in " + userRole + " ";
     }
 
-    console.log('universityRoleuniversityRole' , universityRole)
     if(universityRole != null){
       where_superuniversity_roles = " AND app.university in " + universityRole + " ";
     }
-    console.log('where_superuniversity_roles' , where_superuniversity_roles)
   if(userRole.includes('guattestation')){
     where_attest = attest ;
     }
@@ -230,21 +228,7 @@ module.exports = function (sequelize, DataTypes) {
   if(attest && verify){
     where_portal_wise_condition = ' AND ( '+ where_attest + where_convo + where_migration + where_pdc + where_verify + where_syverify+ ' )'
       }
-      // if(tracker ==null && status == null && filters.length == 0){
-      //   where_super_roles = " AND app.source_from in ('gumoi') "
-      //     } 
-          console.log('where_tracker' , where_tracker)
-          console.log('where_status' , where_status)
-          console.log('where_application_id' , where_application_id)
-          console.log('where_application_email' , where_application_email)
-          console.log('where_student_name' , where_student_name)
-          console.log('where_source_from' , where_source_from)
-          console.log('where_portal_wise_condition' , where_portal_wise_condition)
-          console.log('where_order_id' , where_order_id)
-          console.log('limitOffset' , limitOffset)
-          console.log('where_date' , where_date)
-          console.log('where_super_roles' , where_super_roles)
-          console.log('whereDateValidation' , whereDateValidation)
+    
     return sequelize.query('CALL SP_getApplicationByUser_guAdmin(:where_tracker, :where_status, :where_application_id, :where_application_email, :where_student_name, :where_source_from, :where_portal_wise_condition, :where_order_id, :limitOffset, :where_date,:where_super_roles ,:whereDateValidation :where_superuniversity_roles)', {
       replacements: { 
         where_tracker: where_tracker || " ",

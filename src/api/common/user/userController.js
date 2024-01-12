@@ -38,6 +38,7 @@ router.get('/current', (req, res) => {
           userid : req.user.id
         }
       }).then(function(superRole){
+        // console.log('superRolesuperRolesuperRole' , superRole)
         var pages = '';
         if(superRole.superDashboard){
           pages += 'superDashboard';

@@ -21,6 +21,7 @@ var models = require(root_path + '/models');
 var functions = require(root_path+'/utils/function');
 
 router.post('/login', (req, res) => {
+  console.log('loginlogin')
   const clientIP = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
   passport.authenticate('local', { session: false }, (err, user) => {
     if (err || !user) {
@@ -67,6 +68,7 @@ router.post('/login', (req, res) => {
               userid : user.id
             }
           }).then(function(superRole){
+            console.log('superRole' , superRole)
             if(superRole.superDashboard){
               pages += 'superDashboard';
             }else if(superRole.superStudentManagement){
